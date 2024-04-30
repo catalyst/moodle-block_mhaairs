@@ -23,6 +23,9 @@
  */
 namespace block_mhaairs\task;
 
+global $CFG;
+require_once($CFG->dirroot . '/grade/lib.php');
+
 class add_grade_category_task extends \core\task\adhoc_task {
 
     /**
