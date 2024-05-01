@@ -81,9 +81,12 @@ class add_grade_category_task extends \core\task\adhoc_task {
         }
 
         // Add the item to the category.
-        $gitem = \grade_item::fetch(array('id' => $customdata->itemid));
-        $gitem->categoryid = $category->id;
-        $gitem->update();
+        if ($gitem = \grade_item::fetch(array('id' => $customdata->itemid))) {
+            $gitem->categoryid = $category->id;
+            $gitem->update();
+        } else {
+            mtrace('Grade item not found, skipping update.');
+        }
     }
 
 }
